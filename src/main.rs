@@ -14,7 +14,7 @@ lazy_static! {
     )
     .unwrap();
     static ref TIME_RE: Regex =
-        Regex::new(r"TIME: \d{1,2}\.\d{2} (A|P)\.M\. [–-] \d{1,2}\.\d{2} (A|P)\.M\.").unwrap();
+        Regex::new(r"TIME:? \d{1,2}\.\d{2} (A|P)\.M\.? [–-] \d{1,2}\.\d{2} (A|P)\.M\.").unwrap();
 }
 
 fn extract_text_from_pdf<P>(path: P) -> Result<String, anyhow::Error>
@@ -82,15 +82,13 @@ impl FromStr for OutagesItem {
             .strip_prefix("DATE: ")
             .context("Error stripping 'DATE:' prefix")?
             .to_string();
-        if !TIME_RE.is_match(s) {
-            println!("{}", s);
-        }
         let time_match = TIME_RE
             .find(s)
             .ok_or_else(|| anyhow::Error::msg("There was an error matching the 'TIME_RE'"))?;
         let time = outage_string[time_match.start()..time_match.end()]
-            .strip_prefix("TIME: ")
-            .ok_or_else(|| anyhow::Error::msg("Error stripping out `TIME: ` from the string"))?
+            .replace("TIME", "")
+            .replace(":", "")
+            .trim()
             .to_string();
         let areas = outage_string[time_match.end()..]
             .split(", ")
@@ -109,6 +107,5 @@ fn main() -> Result<(), anyhow::Error> {
     let pdf_text = extract_text_from_pdf("./files/kenya_power_latest.pdf")?;
     let outages_list = pdf_text.parse::<OutagesList>()?;
     println!("{:#?}", outages_list);
-
     Ok(())
 }
