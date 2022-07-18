@@ -5,7 +5,7 @@ Parsing kenya power interruption data from their pdf files into json format
 
 ### Steps
 
-First step is to actually derive the text content from the pdf file into string format. Luckily, rust crate, `pdf-extract`, handles this for us via it's `extract_text` function. PS: storing this data in a `String` type is not the most memory efficient method of going about this I must say, memory usage will be higher the bigger the pdf text size; we can make this compromise for this short demo.
+First step is to actually derive the text content from the pdf file into string format. Luckily, rust crate, [`pdf-extract`](https://crates.io/crates/pdf-extract), handles this for us via it's `extract_text` function. PS: storing this data in a `String` type is not the most memory efficient method of going about this I must say, memory usage will be higher the bigger the pdf text size; we can make this compromise for this short demo.
 
 The next bit is where the "fun" begins - make something meaningful from the junky text that we get back. First is to filter out what I consider as `junk` i.e text that doesn't really hold any meaningful data. This functionality is handled by the `extract_text_from_pdf` function
 
@@ -62,6 +62,16 @@ OutagesList {
             ],
         },
 //...
+```
+
+## Local Development
+
+Requires [rust and `cargo` installation](https://www.rust-lang.org/tools/install).
+
+Once that's done run:
+
+```sh
+cargo run
 ```
 
 Check the [`output`](output) folder for the resulting `stdout` output for both [`kenya_power_latest.pdf`](files/kenya_power_latest.pdf) and [`kenya_power.pdf`](files/kenya_power.pdf) files in the [`files`](files) directory
