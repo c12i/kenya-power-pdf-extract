@@ -252,6 +252,8 @@ name = "pdf_extract"
 version = "0.1.0"
 dependencies = [
  "pdf-extract",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
