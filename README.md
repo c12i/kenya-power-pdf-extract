@@ -71,7 +71,7 @@ Requires [rust and `cargo` installation](https://www.rust-lang.org/tools/install
 Once that's done run:
 
 ```sh
-cargo run
+cargo run ./files/kenya_power.pdf
 ```
 
 Check the [`output`](output) folder for the resulting `stdout` output for both [`kenya_power_latest.pdf`](files/kenya_power_latest.pdf) and [`kenya_power.pdf`](files/kenya_power.pdf) files in the [`files`](files) directory

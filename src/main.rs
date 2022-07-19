@@ -10,7 +10,7 @@ use serde::Serialize;
 
 lazy_static! {
     static ref DATE_RE: Regex = Regex::new(
-        r"DATE: (Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) \d{1,2}\.\d{1,2}\.\d{4}",
+        r"DATE:? (Mon|Tues|Wednes|Thurs|Fri|Satur|Sund)day \d{1,2}\.\d{1,2}\.\d{4}",
     )
     .unwrap();
     static ref TIME_RE: Regex =
@@ -104,7 +104,8 @@ impl FromStr for OutagesItem {
 }
 
 fn main() -> Result<(), anyhow::Error> {
-    let pdf_text = extract_text_from_pdf("./files/kenya_power_latest.pdf")?;
+    let args = std::env::args().collect::<Vec<_>>();
+    let pdf_text = extract_text_from_pdf(&args[1])?;
     let outages_list = pdf_text.parse::<OutagesList>()?;
     println!("{:#?}", outages_list);
     Ok(())
