@@ -18,8 +18,11 @@ Now that we have a list of strings, we can figure out how we can handle a single
 What is left is to put everything together by creating two structs `OutagesList` and `OutagesItem` with their respective `FromStr` trait implementations. So that we finally have this in our main function:
 
 ```rs
+use kenya_power_pdf_extract::{extract_text_from_pdf, OutagesList};
+
 fn main() -> Result<(), anyhow::Error> {
-    let pdf_text = extract_text_from_pdf("./files/kenya_power_latest.pdf")?;
+    let args = std::env::args().collect::<Vec<_>>();
+    let pdf_text = extract_text_from_pdf(&args[1])?;
     let outages_list = pdf_text.parse::<OutagesList>()?;
     println!("{:#?}", outages_list);
     Ok(())
