@@ -1,7 +1,10 @@
 [package]
-name = "pdf_extract"
+name = "kenya_power_pdf_extract"
 version = "0.1.0"
 edition = "2018"
+
+[lib]
+name = "kenya_power_pdf_extract"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

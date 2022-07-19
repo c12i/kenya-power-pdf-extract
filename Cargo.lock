@@ -179,6 +179,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "112c678d4050afce233f4f2852bb2eb519230b3cf12f33585275537d7e41578d"
 
 [[package]]
+name = "kenya_power_pdf_extract"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "lazy_static",
+ "pdf-extract",
+ "regex",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "lazy_static"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -266,18 +278,6 @@ dependencies = [
  "postscript",
  "type1-encoding-parser",
  "unicode-normalization",
-]
-
-[[package]]
-name = "pdf_extract"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "lazy_static",
- "pdf-extract",
- "regex",
- "serde",
- "serde_json",
 ]
 
 [[package]]
