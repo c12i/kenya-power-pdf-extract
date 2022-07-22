@@ -14,7 +14,7 @@ lazy_static! {
     )
     .unwrap();
     static ref TIME_RE: Regex =
-        Regex::new(r"TIME:? \d{1,2}\.\d{2} (A|P)\.M\.? [–-] \d{1,2}\.\d{2} (A|P)\.M\.?").unwrap();
+        Regex::new(r"TIME:? \d{1,2}\.\d{2}\s{0,1}(A|P)\.M\.? [–-] \d{1,2}\.\d{2}\s{0,1}(A|P)\.M\.?").unwrap();
 }
 
 pub fn extract_text_from_pdf<P>(path: P) -> Result<String, anyhow::Error>
