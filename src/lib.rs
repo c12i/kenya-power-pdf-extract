@@ -78,8 +78,7 @@ impl FromStr for OutagesItem {
         let outage_string = s.to_string();
         let region = outage_string[..first_index].to_string();
         let date = outage_string[first_index..date_match.end()]
-            .strip_prefix("DATE: ")
-            .context("Error stripping 'DATE:' prefix")?
+            .replace("DATE: ", "")
             .to_string();
         let time_match = TIME_RE
             .find(s)
