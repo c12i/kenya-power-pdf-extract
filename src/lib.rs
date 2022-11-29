@@ -9,10 +9,9 @@ use regex::Regex;
 use serde::Serialize;
 
 lazy_static! {
-    static ref DATE_RE: Regex = Regex::new(
-        r"DATE:? (Mon|Tues|Wednes|Thurs|Fri|Satur|Sund)day \d{1,2}\.\d{1,2}\.\d{4}",
-    )
-    .unwrap();
+    static ref DATE_RE: Regex =
+        Regex::new(r"DATE:? (Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day \d{1,2}\.\d{1,2}\.\d{4}",)
+            .unwrap();
     static ref TIME_RE: Regex =
         Regex::new(r"TIME:? \d{1,2}\.\d{2} (A|P)\.M\.? [–-] \d{1,2}\.\d{2} (A|P)\.M\.?").unwrap();
 }
